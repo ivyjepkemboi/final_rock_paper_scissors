@@ -46,14 +46,14 @@ def typewriter_effect(text, delay=0.05):
 def get_user_choice(player):
     while True:
         try:
-            choice = int(input(f"{player}, what do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n"))
+            choice = int(input(Fore.BLUE + f"{player}, what do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n"))
             if choice in [0, 1, 2]:
-                print(game_images[choice])
+                print(Fore.YELLOW + game_images[choice])
                 return choice
             else:
-                print("Invalid number, please choose 0, 1, or 2.")
+                print(Fore.RED + "Invalid number, please choose 0, 1, or 2.")
         except ValueError:
-            print("Invalid input, please enter a number.")
+            print(Fore.RED + "Invalid input, please enter a number.")
 
 # Determine the winner based on choices
 def determine_winner(choice1, choice2):
@@ -62,6 +62,6 @@ def determine_winner(choice1, choice2):
     elif (choice1 == 0 and choice2 == 2) or \
          (choice1 == 1 and choice2 == 0) or \
          (choice1 == 2 and choice2 == 1):
-        return "Player 1 wins!"
+        return Fore.GREEN + "Player 1 wins!"
     else:
-        return "Player 2 wins!"
+        return Fore.GREEN + "Player 2 wins!"

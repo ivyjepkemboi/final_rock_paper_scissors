@@ -2,6 +2,7 @@ import random
 from db_setup import session
 from models import Player
 from utils import game_images, get_user_choice, determine_winner, typewriter_effect
+from colorama import init, Fore, Back
 
 def get_or_create_player(name):
     player = session.query(Player).filter_by(name=name).first()
@@ -28,11 +29,11 @@ def play_game():
             player2 = get_or_create_player(player2_name)
 
             print("Player 1's turn:")
-            player1_choice = get_user_choice("Player 1")
+            player1_choice = get_user_choice(player1_name)
             print("\n" * 50)
 
             print("Player 2's turn:")
-            player2_choice = get_user_choice("Player 2")
+            player2_choice = get_user_choice(player2_name)
 
             result = determine_winner(player1_choice, player2_choice)
             print(result)
@@ -63,7 +64,7 @@ def play_game():
                 print("You lose")
         
         else:
-            print("Invalid input, please type '1' or '2'.")
+            print(Fore.RED + "Invalid input, please type '1' or '2'.")
 
         typewriter_effect("Do you want to play again? (yes/no): ")
         play_again = input().lower()
